@@ -88,3 +88,14 @@
 //     printf("%.lf %.lf %.lf", g_res, s_res, k_res);
 //     return 0;
 // }
+
+
+#include <stdio.h>
+
+int main(void){
+    int x,y,z;
+    scanf("%d%d%d", &x, &y, &z);
+    printf("%d %d %d", x,y,z);
+
+    return 0;
+}
