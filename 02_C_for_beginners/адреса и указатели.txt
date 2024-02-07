@@ -1,0 +1,25 @@
+#include <stdio.h>
+#include <locale.h>
+
+int main(void)
+{
+    setlocale(LC_ALL,"");
+    int x;
+    int * px;
+    scanf("%d", &x);
+    px = &x;
+    printf("переменная x= %d\n", x);
+    printf("адрес &x= %p\n", &x);
+    printf("адрес px= %p\n", px);
+    printf("переменная *px= %d\n", *px);
+    printf("адрес &px= %p\n", &px);
+    return 0;
+}
+
+
+15
+переменная x= 15
+адрес &x= 0061FF1C
+адрес px= 0061FF1C
+переменная *px= 15
+адрес &px= 0061FF18
