@@ -1,3 +1,4 @@
 #include <stdio.h>      	// чтобы работали scanf и printf
 #include <assert.h>     	// чтобы работал assert
 #include <math.h>       	// чтобы работали математически сложные функции
+#include "myfile.h" 		// свой проект, имя файла 

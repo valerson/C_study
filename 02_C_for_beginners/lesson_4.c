@@ -104,3 +104,95 @@
 //     print_revers(x);
 //     return 0;
 // }
+
+// #include <stdio.h>
+// int main(void)
+// {
+//     // int x;
+//     char x;
+//     printf("%zd\n", sizeof x);      // 4 в моей системе и на repl.it
+//     printf("%zd\n", sizeof(1 + 2)); // 4 в моей системе и на repl.it
+//     printf("%zd\n", sizeof 3.5);    // 8 в моей системе и на repl.it
+//     printf("%zd\n", sizeof(char));  // 1 всегда
+//     printf("%zd\n", sizeof(&x));
+
+//     return 0;
+// }
+
+// #include <stdio.h>
+// int main()
+// {
+//     int x;
+//     int * px = &x;
+//     scanf("%d", px);    // тут & не нужен, в px указывает на переменную типа int
+//     printf("%d\n", x+1);
+//     return 0;
+// }
+
+// #include <stdio.h>
+
+// int x = 5;
+
+// void foo()
+// {
+//     x = x + 1;
+// }
+
+// int main()
+// {
+//     foo();
+//     foo();
+//     printf("%d\n", x);
+//     return 0;
+// }
+
+// #include <stdio.h>
+
+// void foo()
+// {
+//     static int x; // неявная инициализация
+//     x = x + 1;
+//     printf("%d ", x);
+// }
+
+// int main()
+// {
+//     foo();
+//     foo();
+//     return 0;
+// }
+
+// #include <stdio.h>
+// #define time2min(h, m) ((h) * 60 + (m))
+
+// int main(void)
+// {
+//     int h, m, mm;
+//     scanf("%d:%d", &h, &m);
+
+//     mm = time2min(h, m);
+//     printf("%d\n", mm);
+
+//     mm = time2min(h, m) * 2;
+//     printf("%d\n", mm);
+
+//     mm = time2min(h + 1, m + 5);
+//     printf("%d\n", mm);
+//     return 0;
+// }
+
+// #include <stdio.h>
+// #define min2time(mm, h, m) ((h) = (mm) / 60 % 24, (m) = (mm) % 60)
+
+// int main(void)
+// {
+//     int h, m, mm;
+//     scanf("%d", &mm);
+
+//     min2time(mm, h, m);
+//     printf("%02d:%02d\n", h, m);
+
+//     min2time(mm + 65, h, m);
+//     printf("%02d:%02d\n", h, m);
+//     return 0;
+// }
