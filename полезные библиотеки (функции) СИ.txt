@@ -2,3 +2,10 @@
 #include <assert.h>     	// чтобы работал assert
 #include <math.h>       	// чтобы работали математически сложные функции
 #include "myfile.h" 		// свой проект, имя файла 
+#include <stdlib.h>     	// нужно для malloc и free
+#include <string.h>		// нужно для функции копирования массивов 
+				void *memcpy(void *dest, const void *src, size_t n);
+				// нужно для функции заполнения массива элементами
+				void *memset(void *s, int c, size_t n);
+
+

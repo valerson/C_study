@@ -1,219 +1,324 @@
+// // // Aknights Рыцари и лжецы
 // #include <stdio.h>
-
-// typedef struct
-// {
-//     unsigned char red;
-//     unsigned char green;
-//     unsigned char blue;
-// } Color;
-
-// Color getColor();
-// void printRGB(Color);
-
 // int main(void)
 // {
-//     Color z;
+//     int n, enter;
+//     int knights_1 = 0, knights_2, temp, first;
+//     scanf("%d", &n);
+//     scanf("%d", &enter);
+//     first = enter; // что сказал первый
+//     // temp = enter;
+//     // temp = 1; //-первая ветка
+//     temp = 0; //-вторая ветка
 
-//     z = getColor();
-//     printRGB(z);
+//     // // 1 ветка - первый- это рыцарь
+//     // for (int i = 1; i < n; i += 1)
+//     // {
+//     //     scanf("%d", &enter);
+//     //     if (temp == 1) // рыцарь сказал, что..
+//     //     {
+//     //         if (enter == 1) //..следующий рыцарь
+//     //         {
+//     //             knights_1 += 1;
+//     //             temp = 1;
+//     //         }
+//     //         else //..следующий лжец
+//     //             temp = 0;
+//     //     }
+//     //     else // лжец сказал, что..
+//     //     {
+//     //         if (enter == 0) //..след - лжец
+//     //         {
+//     //             knights_1 += 1;
+//     //             temp = 1;
+//     //         }
+//     //         else
+//     //             temp = 0; //..следующий рыцарь
+//     //     }
+//     // }
+//     // if (temp == 1) // рыцарь сказал, что..
+//     // {
+//     //     if (first == 1) //..первый рыцарь
+//     //     {
+//     //         knights_1 += 1;
+//     //     }
+//     // }
+//     // else // лжец сказал, что..
+//     // {
+//     //     if (enter == 0) //..первый - лжец
+//     //     {
+//     //         knights_1 += 1;
+//     //     }
+//     // }
+
+//     // 2 ветка - первый- это лжец
+//     for (int i = 1; i < n; i += 1)
+//     {
+//         // scanf("%d", &enter);
+//         if (temp == 0) // лжец сказал, что..
+//         {
+//             if (enter == 1) //..следующий рыцарь
+//                 temp = 0;
+//             else //..следующий лжец
+//             {
+//                 knights_1 += 1;
+//                 temp = 1;
+//             }
+//         }
+
+//         else // рыцарь сказал, что..
+//         {
+//             if (enter == 0) //..след - лжец
+//                 temp = 0;
+//             else //..следующий рыцарь
+//             {
+//                 knights_1 += 1;
+//                 temp = 1;
+//             }
+//         }
+//         scanf("%d", &enter);
+//     }
+//     if (temp == 1) // рыцарь сказал, что..
+//     {
+//         if (first == 1) //..первый рыцарь
+//         {
+//             knights_1 += 1;
+//         }
+//     }
+//     else // лжец сказал, что..
+//     {
+//         if (enter == 0) //..первый - лжец
+//         {
+//             knights_1 += 1;
+//         }
+//     }
+
+//     printf("knights = %d\n", knights_1);
+//     // printf("knights = %d\n", knights_2);
 //     return 0;
 // }
 
-// // считать RGB-формат с консоли
-// Color getColor()
-// {
-//     Color res;
-//     int r, g, b;
-//     scanf("%d%d%d", &r, &g, &b);
-//     res.red = r;
-//     res.green = g;
-//     res.blue = b;
-//     return res;
-// }
-
-// // Печатать только числа!!
-// void printRGB(Color rgb)
-// {
-//     printf("%u %u %u\n", rgb.red, rgb.green, rgb.blue);
-// }
-
-#include <stdio.h>
-// int summ(int n, int res)
-// {
-//     if (n / 10 == 0)
-//     {
-//         res = res + n % 10;
-//         return res;
-//     }
-//     else
-//     {
-//         res = res + n % 10;
-//         return summ(n / 10, res);
-//     }
-// }
-
-// unsigned long long fact(int n)
-// {
-//     if (n == 1 || n == 0)
-//         return n;
-//     else
-//         n = n * fact(n - 1);
-//     return n;
-// }
+// // Aknights Рыцари и лжецы
+// // // Aknights Рыцари и лжецы
+// #include <stdio.h>
+// int funk(int next, int status);
 
 // int main(void)
 // {
-//     // int n;
-//     // scanf("%d", &n);
-//     for (int i = 1; i <= 20; i += 1)
+//     int n;
+//     int knights1 = 0, knights2 = 0;
+//     int status1, status2; // действующий рыцарь 1 или лжец 0
+//     int next;             // мнение о соседе
+//     scanf("%d", &n);
+
+//     status1 = 1; // первый - это рыцарь
+//     status2 = 0; // первый - это лжец
+
+//     // // 1 ветка - первый- это рыцарь
+//     for (int i = 0; i < n; i += 1)
 //     {
-//         printf("i= %d ostatok ot 9 = %d\n", i, i % 9);
+//         scanf("%d", &next);
+//         // первый рыцарь
+//         if (status1 == 1) // рыцарь сказал, что..
+//         {
+//             if (next == 1) //..следующий рыцарь
+//             {
+//                 knights1 += 1;
+//                 status1 = 1;
+//             }
+//             else //..следующий лжец
+//                 status1 = 0;
+//         }
+
+//         else // status==0 лжец сказал, что..
+//         {
+//             if (next == 0) //..след - лжец
+//             {
+//                 knights1 += 1;
+//                 status1 = 1;
+//             }
+//             else
+//                 status1 = 0; //..следующий рыцарь
+//         }
+
+//         // первый лжец
+//         if (status2 == 1) // рыцарь сказал, что..
+//         {
+//             if (next == 1) //..следующий рыцарь
+//             {
+//                 knights2 += 1;
+//                 status2 = 1;
+//             }
+//             else //..следующий лжец
+//                 status2 = 0;
+//         }
+
+//         else // status==0 лжец сказал, что..
+//         {
+//             if (next == 0) //..след - лжец
+//             {
+//                 knights2 += 1;
+//                 status2 = 1;
+//             }
+//             else
+//                 status2 = 0; //..следующий рыцарь
+//         }
 //     }
 
-//     // printf("%d", n % 10);
+//     // printf("knights 1 = %d knights 2 = %d\n", knights1, knights2);
+
+//     printf("%d", knights1>knights2? knights2:knights1);
 //     return 0;
 // }
 
 // #include <stdio.h>
-// #include <locale.h>
 
-// // Функция для вычисления факториала числа
-// unsigned long long factorial(int n)
+// struct Card
 // {
-//     if (n == 0)
-//         return 1;
-//     return n * factorial(n - 1);
+//     char rank; // достоинство
+//     char suit; // масть
+// };
+
+// int main()
+// {
+//     struct Card hand[] = {{'Q', 's'}, {'A', 'h'}, {'9', 'd'}, {0, 0}};
+
+//     // напечатаем карты до фальшивой, фальшивую не печатаем:
+//     for (int i = 0; hand[i].rank != 0; i++)
+//         printf("%c%c", hand[i].rank, hand[i].suit);
+//     printf("\n");
+
+//     // тоже но с указателем / по сути это перебор по элементам (структурам масть-номинал) матрицы
+//     struct Card *p;                      // указатель на одну карту
+//     for (p = hand; p->rank != 0; p += 1) // p.rank=p->rank p=hand = struct Card *
+//         prinrtf("%c%c", p->rank, p->suit);
+//     printf("\n");
+//     return 0;
 // }
 
-// // Функция для проверки, является ли число простым
-// int isPrime(int n)
+// #include <stdio.h>
+// #define DECKSIZE 52
+// struct Card
 // {
-//     if (n <= 1)
-//         return 0;
-//     for (int i = 2; i * i <= n; i++)
-//     {
-//         if (n % i == 0)
-//             return 0;
-//     }
-//     return 1;
+//     char rank; // достоинство
+//     char suit; // масть
+// };
+
+// void read_cards(struct Card *hand)
+// {
+//     struct Card *p; // указатель на одну карту
+//     for (p = hand; 2 == scanf("%c%c", &p->rank, &p->suit); p++)
+//         ;
+//     // в конец положим фальшивую карту
+//     p->rank = p->suit = 0;
 // }
 
-// // Функция для вычисления суммы цифр числа
-// int sumOfDigits(unsigned long long num)
+// void print_cards(struct Card *hand)
 // {
-//     int sum = 0;
-//     while (num != 0)
-//     {
-//         sum += num % 10;
-//         num /= 10;
-//     }
-//     return sum;
+//     struct Card *p; // указатель на одну карту
+//     for (p = hand; p->rank != 0; p++)
+//         printf("%c%c", p->rank, p->suit);
+//     printf("\n");
 // }
 
 // int main()
 // {
-//     setlocale(LC_ALL, " ");
-//     int n;
-//     printf("n=?: ");
-//     scanf("%d", &n);
+//     struct Card hand[DECKSIZE + 1];
+//     read_cards(hand);
+//     print_cards(hand);
 
-//     int loveCount = 0;
+//     return 0;
+// }
 
-//     // Перебираем количество лепестков от 1 до n
-//     for (int i = 1; i <= n; i++)
+// // BookOfBooks: страницы книги
+// #include <stdio.h>
+
+// int main(void)
+// {
+//     int min = 20, h = 11;
+//     printf("%02d:%02d\n", h, min);
+//     int plus = -60;
+//     min += plus;
+
+//     while (min < 0)
 //     {
-//         printf("x= %d\n", i);
-//         // Вычисляем факториал количества лепестков
-//         unsigned long long fact = factorial(i);
-//         printf("fact(x)= %d\n", fact);
-//         // Вычисляем сумму цифр полученного числа
-//         int sum = sumOfDigits(fact);
-//         printf("summ_fact(x)= %d\n", sum);
-//         // Проверяем, является ли сумма цифр простым числом
-//         printf("prostoe?= %d\n", isPrime(sum));
-//         if (isPrime(sum))
-//         {
-//             // Если да, то увеличиваем счетчик "ЛЮБИТ"
-//             loveCount++;
-//         }
-
-//         // {
-//         // // Вычисляем факториал количества лепестков
-//         // unsigned long long fact = factorial(i);
-//         // // Вычисляем сумму цифр полученного числа
-//         // int sum = sumOfDigits(fact);
-//         // // Проверяем, является ли сумма цифр простым числом
-//         // if (isPrime(sum))
-//         // {
-//         //     // Если да, то увеличиваем счетчик "ЛЮБИТ"
-//         //     loveCount++;
-//         // }
+//         min += 60;
+//         h -= 1;
+//     }
+//     while (h < 0)
+//     {
+//         h += 12;
 //     }
 
-//     printf("love_num= %d \n", loveCount);
-
+//     h += min / 60;
+//     min = min % 60;
+//     h = h % 12;
+//     printf("%02d:%02d\n", h, min);
 //     return 0;
 // }
 
 #include <stdio.h>
 
-// Функция для вычисления факториала числа
-unsigned long long factorial(int n)
-{
-    if (n == 0)
-        return 1;
-    return n * factorial(n - 1);
-}
+void time_up(int *h, int *min, int plus);
 
-// Функция для проверки, является ли число простым
-int isPrime(int n)
+int main(void)
 {
-    if (n <= 1)
-        return 0;
-    for (int i = 2; i * i <= n; i++)
+    int hb, minb, nb, hbf, minbf;
+    int hm, minm, nm, hmf, minmf;
+    int flag = 0;
+    scanf("%d:%d%d%d:%d", &hb, &minb, &nb, &hbf, &minbf);
+    scanf("%d:%d%d%d:%d", &hm, &minm, &nm, &hmf, &minmf);
+
+    int plus_b = hbf * 60 + minbf; // минуты переводова Б
+    int plus_m = hmf * 60 + minmf; // минуты переводова М
+
+    // указатели на часы обоих
+    int *phb = &hb, *pminb = &minb;
+    int *phm = &hm, *pminm = &minm;
+
+    for (int day = 0; day < 7; day++)
     {
-        if (n % i == 0)
-            return 0;
-    }
-    return 1;
-}
-
-// Функция для вычисления суммы цифр числа
-int sumOfDigits(unsigned long long num)
-{
-    int sum = 0;
-    while (num != 0)
-    {
-        sum += num % 10;
-        num /= 10;
-    }
-    return sum;
-}
-
-int main()
-{
-    int n;
-    printf("n=: ");
-    scanf("%d", &n);
-
-    int loveCount = 0;
-
-    // Перебираем количество лепестков от 1 до n
-    for (int i = 1; i <= n; i++)
-    {
-        // Вычисляем факториал количества лепестков
-        unsigned long long fact = factorial(i);
-        // Вычисляем сумму цифр полученного числа
-        int sum = sumOfDigits(fact);
-        // Проверяем, является ли сумма цифр простым числом
-        if (isPrime(sum))
+        for (int time_b = 0, time_m = 0; time_b <= 1440; time_b += nb, time_m += nm) // 1440 - минут в дне
         {
-            // Если да, то увеличиваем счетчик "ЛЮБИТ"
-            loveCount++;
+            // перевод часов
+            time_up(phb, pminb, plus_b);
+            time_up(phm, pminm, -plus_m);
+            if (*phb == *phm && *pminb == *pminm)
+            {
+                int res_day = day;
+                int res_hour = *phb;
+                int res_min = *pminb;
+                printf("%d %02d:%02d\n", res_day, res_hour, res_min);
+                flag = 1;
+                break;
+            }
         }
+        if (flag)
+            break;
     }
 
-    printf("love_num =  %d раз(а).\n", loveCount);
-
+    if (flag == 0)
+        printf("NO");
     return 0;
+}
+
+void time_up(int *h, int *min, int plus)
+{
+    *min += plus;
+
+    // поправка на перевод назад
+    while (*min < 0)
+    {
+        *min += 60;
+        *h -= 1;
+    }
+    while (*h < 0)
+    {
+        *h += 12;
+    }
+
+    *h += *min / 60;
+    *min = *min % 60;
+    *h = *h % 12;
+    // printf("%02d:%02d\n", *h, *min);
 }

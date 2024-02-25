@@ -194,36 +194,95 @@
 //     return 0;
 // }
 
-// НЕ РЕШИЛ!!!!!
 //  // for_6 Сколько раз встретилась цифра в ОЧЕНЬ БОЛЬШОМ числе?
-#include <stdio.h>
-int main(void)
-{
-    int count = 0, d;
-    int k;
+// #include <stdio.h>
+// int main(void)
+// {
+//     int count = 0, d;
+//     int k;
 
-    scanf("%d", &d);
-    printf("%d", d);
+//     scanf("%d", &d);
+//     printf("%d", d);
 
-    while ((k = getchar()) != EOF)
-    {
-        putchar(k);
+//     while ((k = getchar()) != EOF)
+//     {
+//         putchar(k);
 
-        if (k - 48 == d)
-        {
-            count += 1;
-        }
-    }
+//         if (k - 48 == d)
+//         {
+//             count += 1;
+//         }
+//     }
 
-    printf(" %d", count);
+//     printf(" %d", count);
 
-    return 0;
-}
+//     return 0;
+// }
+
+// считывание по одному символу
+// ОТЛИЧНОЕ!!!!
+// #include <stdio.h>
+
+// int main()
+// {
+//     int d;
+//     int number;
+//     int numberPrint;
+//     int count = 0;
+
+//     scanf("%1d", &d);
+//     printf("%d ", d);
+
+//     while (scanf("%1d", &number) == 1)
+//     {
+//         if (d == number)
+//             count++;
+
+//         printf("%d   ", number);
+//     }
+
+//     printf(" %d", count);
+
+//     return 0;
+// }
 
 // for_14 Скобки
 // #include <stdio.h>
 // int main(void)
 // {
+//     char symvol;
+//     int open = 0, close = 0, flag = 0;
+//     scanf("%1c", &symvol);
+//     if (symvol == '(')
+//     {
+//         open += 1;
+//         while (scanf("%1c", &symvol) == 1)
+//         {
+//             if (symvol == '(')
+//                 open += 1;
+//             if (symvol == ')')
+//                 close += 1;
+//             // if (symvol != '(' && symvol != ')' && symvol != '\n')
+//             //{
+//             // flag = 1;
+//             // printf("NO");
+//             // break;
+//             //}
+//             if (open - close < 0)
+//             {
+//                 flag = 1;
+//                 printf("NO");
+//                 break;
+//             }
+//         }
+//         if (open - close == 0)
+//             printf("YES");
+//         else if (flag != 1)
+//             printf("NO");
+//     }
+
+//     else
+//         printf("NO");
 
 //     return 0;
 // }
