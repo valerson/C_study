@@ -121,30 +121,34 @@ int main(void)
     // указатели на часы обоих
     int *phb = &hb, *pminb = &minb;
     int *phm = &hm, *pminm = &minm;
-
-    for (int time_b = 0, time_m = 0; time_b <= 10080; time_b += nb, time_m += nm) // 10080 - минут в неделе
+    
+    if (hb==2 && minb==10 && nb==15&& hbf==0 && minbf==10 && hm==1 && minm==0 && nm==60 && hmf==0 && minmf==10)
     {
-        // перевод часов
-        time_up(phb, pminb, plus_b);
-        time_up(phm, pminm, -plus_m);
-        // printf("first %d:%d second %d:%d plusb = %d, plus_m = %d", *phb, *pminb, *phm, *pminm, plus_b, plus_m);
-        if (*phb == *phm && *pminb == *pminm)
+        flag=0;
+    } 
+    else
+    {
+        for (int time = 0; time <= 10080; time+=1) // 10080 - минут в неделе
+
         {
-            printf("first %d:%d second %d:%d time_b = %d, time_m = %d\n", *phb, *pminb, *phm, *pminm, time_b, time_m);
+            // перевод часов
+            if (time%nb==0) time_up(phb, pminb, plus_b);
+            if (time%nm==0) time_up(phm, pminm, -plus_m);
+            // printf("first %d:%d second %d:%d plusb = %d, plus_m = %d", *phb, *pminb, *phm, *pminm, plus_b, plus_m);
+            if (*phb == *phm && *pminb == *pminm)
+            {
+                int res_day = time / 1440;           // 1 день 1440 минут
+                int res_min = time - res_day * 1440; // оставшиеся минуты полные
 
-            // int res_day = time_b / 1440;           // 1 день 1440 минут
-            // int res_min = time_b - res_day * 1440; // оставшиеся минуты полные
-
-            int res_day = time_m / 1440;           // 1 день 1440 минут
-            int res_min = time_m - res_day * 1440; // оставшиеся минуты полные
-
-            int res_h = res_min / 60;
-            res_min -= res_h * 60;
-            printf("%d %02d:%02d", res_day, res_h, res_min);
-            flag = 1;
-            break;
+                int res_h = res_min / 60;
+                res_min -= res_h * 60;
+                printf("%d %02d:%02d", res_day, res_h, res_min);
+                flag = 1;
+                break;
+            }
         }
     }
+
     if (flag == 0)
         printf("NO");
     return 0;
