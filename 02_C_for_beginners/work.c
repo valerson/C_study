@@ -257,68 +257,86 @@
 //     return 0;
 // }
 
-#include <stdio.h>
+// #include <stdio.h>
 
-void time_up(int *h, int *min, int plus);
+// void time_up(int *h, int *min, int plus);
+
+// int main(void)
+// {
+//     int hb, minb, nb, hbf, minbf;
+//     int hm, minm, nm, hmf, minmf;
+//     int flag = 0;
+//     scanf("%d:%d%d%d:%d", &hb, &minb, &nb, &hbf, &minbf);
+//     scanf("%d:%d%d%d:%d", &hm, &minm, &nm, &hmf, &minmf);
+
+//     int plus_b = hbf * 60 + minbf; // минуты переводова Б
+//     int plus_m = hmf * 60 + minmf; // минуты переводова М
+
+//     // указатели на часы обоих
+//     int *phb = &hb, *pminb = &minb;
+//     int *phm = &hm, *pminm = &minm;
+
+//     for (int day = 0; day < 7; day++)
+//     {
+//         for (int time_b = 0, time_m = 0; time_b <= 1440; time_b += nb, time_m += nm) // 1440 - минут в дне
+//         {
+//             // перевод часов
+//             time_up(phb, pminb, plus_b);
+//             time_up(phm, pminm, -plus_m);
+//             if (*phb == *phm && *pminb == *pminm)
+//             {
+//                 int res_day = day;
+//                 int res_hour = *phb;
+//                 int res_min = *pminb;
+//                 printf("%d %02d:%02d\n", res_day, res_hour, res_min);
+//                 flag = 1;
+//                 break;
+//             }
+//         }
+//         if (flag)
+//             break;
+//     }
+
+//     if (flag == 0)
+//         printf("NO");
+//     return 0;
+// }
+
+// void time_up(int *h, int *min, int plus)
+// {
+//     *min += plus;
+
+//     // поправка на перевод назад
+//     while (*min < 0)
+//     {
+//         *min += 60;
+//         *h -= 1;
+//     }
+//     while (*h < 0)
+//     {
+//         *h += 12;
+//     }
+
+//     *h += *min / 60;
+//     *min = *min % 60;
+//     *h = *h % 12;
+//     // printf("%02d:%02d\n", *h, *min);
+// }
+
+#include <stdio.h>
+#include <string.h>
 
 int main(void)
 {
-    int hb, minb, nb, hbf, minbf;
-    int hm, minm, nm, hmf, minmf;
-    int flag = 0;
-    scanf("%d:%d%d%d:%d", &hb, &minb, &nb, &hbf, &minbf);
-    scanf("%d:%d%d%d:%d", &hm, &minm, &nm, &hmf, &minmf);
-
-    int plus_b = hbf * 60 + minbf; // минуты переводова Б
-    int plus_m = hmf * 60 + minmf; // минуты переводова М
-
-    // указатели на часы обоих
-    int *phb = &hb, *pminb = &minb;
-    int *phm = &hm, *pminm = &minm;
-
-    for (int day = 0; day < 7; day++)
+    char s[1000] = "abcdefg";
+    int n = strlen(s);
+    for (int i = n - 1; i >= n - 4; i -= 1)
     {
-        for (int time_b = 0, time_m = 0; time_b <= 1440; time_b += nb, time_m += nm) // 1440 - минут в дне
-        {
-            // перевод часов
-            time_up(phb, pminb, plus_b);
-            time_up(phm, pminm, -plus_m);
-            if (*phb == *phm && *pminb == *pminm)
-            {
-                int res_day = day;
-                int res_hour = *phb;
-                int res_min = *pminb;
-                printf("%d %02d:%02d\n", res_day, res_hour, res_min);
-                flag = 1;
-                break;
-            }
-        }
-        if (flag)
-            break;
+
+        s[i - 4] = s[i];
+        if (i == n - 4)
+            s[i] = '\0';
     }
 
-    if (flag == 0)
-        printf("NO");
     return 0;
-}
-
-void time_up(int *h, int *min, int plus)
-{
-    *min += plus;
-
-    // поправка на перевод назад
-    while (*min < 0)
-    {
-        *min += 60;
-        *h -= 1;
-    }
-    while (*h < 0)
-    {
-        *h += 12;
-    }
-
-    *h += *min / 60;
-    *min = *min % 60;
-    *h = *h % 12;
-    // printf("%02d:%02d\n", *h, *min);
 }

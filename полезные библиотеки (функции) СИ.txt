@@ -5,7 +5,26 @@
 #include <stdlib.h>     	// нужно для malloc и free
 #include <string.h>		// нужно для функции копирования массивов 
 				void *memcpy(void *dest, const void *src, size_t n);
+				
 				// нужно для функции заполнения массива элементами
 				void *memset(void *s, int c, size_t n);
+				
+				// стандартная функция strcmp(s1,s2) посимвольная разница между строками. 
+				если == 0, то одинаковые
 
+!!!				// стандартная функция srtlen(char *s) - длина строки, не считая '\0'
+				printf("%zd", strlen("abc"); // 3
+
+				// стандартная функция strcat к одной строке добавить другую.
+				char *strcat(char *dest, const char *src);
+				char *strncat(char *dest, const char *src, size_t n);
+				strcat("hi", "=hello"); //hi=hello
+				
+				// strchr, strrchr - поиск символа в строке
+				char *strchr(const char *s, int c);     // слева направо
+				char *strrchr(const char *s, int c);    // справа (right) налево
+
+ 				// strstr - поиск подстроки в строке
+				char *strstr(const char *str, const char *substr);
+#include <ctype.h>		// стандартные функции СИ по проверке чего-то. наприме, isalpha(x)
 
