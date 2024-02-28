@@ -26,5 +26,14 @@
 
  				// strstr - поиск подстроки в строке
 				char *strstr(const char *str, const char *substr);
+
+				// strtok - разбор строки по токенам (словам)
+				char s[] = "a,bb; cccc?dd";         // текст
+				const char * delim = ",;?!. \t";    // алфавит разделителей
+				for (char * p = strtok(s, delim);   // начинаем разбор, передаем строку s
+       						p != NULL;                  // пока не нашли новый разделитель
+    						p = strtok (NULL, delim) )  // в следующий раз вызываем от NULL
+    					printf("%s\n", p);              // вместо разделителя \0, поэтому можно напечатать токен от p до \0
+
 #include <ctype.h>		// стандартные функции СИ по проверке чего-то. наприме, isalpha(x)
 
