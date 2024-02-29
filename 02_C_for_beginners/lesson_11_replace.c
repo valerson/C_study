@@ -55,7 +55,7 @@ void replace(char *result, const char *start)
         strncat(result, s, b-s); //слепили строку резалт и часть строки с указателя на начало нужное количество букв
         strcat(result,"watermelon");
         s=b+len_bomba-1; //сдвинули указатель на адрес конца бомбы
-        b[0]='-'; //портим слово бомба. символ - любой
+        b[0]='\0'; //портим слово бомба. символ - любой
         b=strstr(start_copy, "bomb"); //ищем еще одно слово бомба
         //printf("result = %s\n", result);
     }
