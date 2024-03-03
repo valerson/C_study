@@ -3,6 +3,7 @@
 #include <math.h>       	// чтобы работали математически сложные функции
 #include "myfile.h" 		// свой проект, имя файла 
 #include <stdlib.h>     	// нужно для malloc и free
+				// нужно для qsort (универсальная сортировка массива)
 #include <string.h>		// нужно для функции копирования массивов 
 				void *memcpy(void *dest, const void *src, size_t n);
 				

@@ -323,12 +323,18 @@
 //     // printf("%02d:%02d\n", *h, *min);
 // }
 
+// первое
 #include <stdio.h>
-#include <string.h>
-
+#include <stdlib.h>
 int main(void)
 {
-    printf("%d", 33 / 2);
+
+    char *s = NULL;
+    while (1 == scanf("%ms", &s))
+    {
+        printf("%s\n", s);
+        free(s);
+    }
 
     return 0;
 }
