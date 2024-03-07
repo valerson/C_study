@@ -206,65 +206,16 @@
 // Произвольные фигуры
 #include <stdio.h>
 
-void print_massive(char m[101][101], int n);
-int paint(char m[101][101], int i, int j, int n, char color);
-
 int main(void)
 {
-    int n;
-    scanf("%d", &n);
-    char m[101][101];
-    // записали масив
-    for (int i = 0; i < n; i += 1)
+    int n = 0;
+    int k[] = {1, 2, 3, 4, 5};
+    while (k[n] != '\0')
     {
-        scanf("%101s", m[i]);
+        n += 1;
+        printf("%d\n", n);
     }
-    print_massive(m, n);
-
-    // разукрашка
-    char color = '1';
-    for (int i = 0; i < n; i += 1)
-    {
-        for (int j = 0; j < n; j += 1)
-        {
-            if (m[i][j] == '*')
-            {
-                paint(m, i, j, n, color);
-                color += 1; // следующий цвет взяли
-            }
-        }
-    }
-
-    print_massive(m, n);
+    printf("%d", n);
 
     return 0;
-}
-
-// функции
-void print_massive(char m[101][101], int n)
-{
-    // распечататли массив
-    printf("\n");
-    for (int i = 0; i < n; i += 1)
-    {
-        for (int j = 0; j < n; j += 1)
-        {
-            printf("%c", m[i][j]);
-        }
-        printf("\n");
-    }
-}
-
-int paint(char m[101][101], int i, int j, int n, char color)
-{
-    if (m[i][j] == '*')
-    {
-        m[i][j] = color;
-        paint(m, i + 1, j, n, color);
-        paint(m, i - 1, j, n, color);
-        paint(m, i, j + 1, n, color);
-        paint(m, i, j - 1, n, color);
-    }
-    else
-        return 0;
 }

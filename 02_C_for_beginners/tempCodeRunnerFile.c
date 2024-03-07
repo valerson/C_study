@@ -1,7 +1,9 @@
-int cmp_int(const void * p1, const void * p2)
-{
-    const int *pp1 = (const int *)p1;
-    const int *pp2 = (const int *)p2;
-    
-    return (*pp1>*pp2) - (*pp1-*pp2);
-}
+printf("table result = \n");
+    // for (int i = 0; i < SIZE; i += 1)
+    // {
+    //     for (int j = 0; j < SIZE; j += 1)
+    //     {
+    //         printf("%c", pg[i][j]);
+    //     }
+    //     printf("\n");
+    // }
