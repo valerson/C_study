@@ -1,9 +1,10 @@
-printf("table result = \n");
-    // for (int i = 0; i < SIZE; i += 1)
-    // {
-    //     for (int j = 0; j < SIZE; j += 1)
-    //     {
-    //         printf("%c", pg[i][j]);
-    //     }
-    //     printf("\n");
-    // }
+y1 = (1 * 1 * 1) / (1 * 1 + i * i);
+        // printf("%.7lf|", y1);
+        // y2 = -(i * i) - 1 + sqrt(2 * (i * i + 1));
+        // if (y2 <= 0)
+        //     printf("-|");
+        // else
+        //     printf("%.7lf|", sqrt(y2));
+        // y3 = 1 / (i * i);
+        // printf("%.7lf", y3);
+        // printf("\n");

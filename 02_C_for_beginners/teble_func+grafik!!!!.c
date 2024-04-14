@@ -29,7 +29,7 @@ int main(void)
         printf("%.7lf", y3);
         printf("\n");
     }
-    
+
     // for (int y = H - 1; y >= 0; y -= 1)
     // {
     //     pos_y = y * step;

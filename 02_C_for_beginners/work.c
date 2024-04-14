@@ -1,152 +1,169 @@
 #include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
 
-#define SIZE 10
+int fPScore = 0;
+int sPScore = 0;
+
+void cross_and_toe_display(int flag);
+int f_board_key(char key, int fRStart, int fREnd, int min_pos_y, int max_pos_y);
+int second_board_key(char key, int sRStart, int sREnd, int min_pos_y, int max_pos_y);
 
 int main(void)
 {
-    char pg[SIZE][SIZE] = {0};
-    int temp_mine = 0;
-    int mines = 12;
-    int mine_mass[SIZE] = {0};
-
-    // генерация количества случайного количества бомб в каждом ряду
-    while (mines != 0)
+    while (1)
     {
-        for (int i = 0; i < SIZE; i += 1)
-        {
-            srand(time(NULL));
-            mines -= temp_mine;
-            do
-            {
-                if (i == 0)
-                    temp_mine = rand() % (SIZE / 2 - temp_mine);
-                else
-                    temp_mine = rand() % (SIZE / 2 - mine_mass[i - 1]);
-            } while (mines - temp_mine < 0);
-            mines -= temp_mine;
-            mine_mass[i] = temp_mine;
-            temp_mine = 0;
-            if (mines == 0)
-                break;
-        }
+        int flag = 1;
+        cross_and_toe_display(flag);
     }
+}
 
-    // for (int i = 0; i < SIZE; i += 1)
-    // {
-    //     for (int j = 0; j < SIZE; j += 1)
-    //     {
-    //         pg[i][j] = 0;
-    //     }
-    // }
+void cross_and_toe_display(int flag)
+{
+    // racket start positions
+    int fRStart = 5;
+    int fREnd = 7;
+    int firstRacketX = 3;
+    int sRStart = 17;
+    int sREnd = 19;
+    int secondRacketX = 76;
 
-    for (int i = 0; i < SIZE; i += 1)
+    char vertical = '|';
+    char horizontal = '-';
+    char space = ' ';
+    char point = '*';
+
+    int pointX = 39;
+    int pointY = 12;
+    int pointSpeedX = 1;
+    int pointSpeedY = 1;
+
+    int max_pos_y = 25;
+    int max_pos_x = 80;
+    int min_pos_y = 1;
+    int pole[max_pos_y][max_pos_x];
+    printf("\033[0d\033[2J");
+    while (flag)
     {
-
-        for (int j = 0; j < SIZE; j += 1)
+        printf("\033[0d\033[2J");
+        for (int i = 0; i < max_pos_y; i++)
         {
-            if (mine_mass[i] == 0)
-                break;
-            if (i == 0) // первая строка
+            for (int j = 0; j < max_pos_x; j++)
             {
-                if (j > 0 && j < SIZE - 1)
+                if (j == 0 || j == max_pos_x - 1)
                 {
-                    if (pg[i][j - 1] == 0)
-                    {
-                        pg[i][j] = '*';
-                        mine_mass[i] -= 1;
-                    }
+                    pole[i][j] = vertical;
                 }
-
-                if (j == 0)
+                else if (i == 0 || i == max_pos_y - 1)
                 {
-                    pg[i][j] = '*';
-                    mine_mass[i] -= 1;
+                    pole[i][j] = horizontal;
                 }
-
-                if (j == SIZE - 1)
+                else if (i == pointY && j == pointX)
                 {
-                    if (pg[i][j - 1] == 0)
-                    {
-                        pg[i][j] = '*';
-                        mine_mass[i] -= 1;
-                    }
+                    pole[i][j] = point;
                 }
-            }
-
-            if (i == SIZE - 1) // последняя строка
-            {
-                if (j > 0 && j < SIZE - 1)
+                else if ((i >= fRStart && i <= fREnd && j == firstRacketX) ||
+                         (i >= sRStart && i <= sREnd && j == secondRacketX))
                 {
-                    if (pg[i][j + 1] == 0 && pg[i][j - 1] == 0 && pg[i - 1][j + 1] == 0 && pg[i - 1][j - 1] == 0 && pg[i - 1][j] == 0)
-                    {
-                        pg[i][j] = '*';
-                        mine_mass[i] -= 1;
-                    }
+                    pole[i][j] = vertical;
                 }
-
-                if (j == 0)
+                else if ((i != 0 && i != max_pos_y) || (j != 0 && j != max_pos_x))
                 {
-                    if (pg[i][j + 1] == 0 && pg[i - 1][j + 1] == 0 && pg[i - 1][j] == 0)
-                    {
-                        pg[i][j] = '*';
-                        mine_mass[i] -= 1;
-                    }
-                }
-
-                if (j == SIZE - 1)
-                {
-                    if (pg[i][j - 1] == 0 && pg[i - 1][j - 1] == 0 && pg[i - 1][j] == 0)
-                    {
-                        pg[i][j] = '*';
-                        mine_mass[i] -= 1;
-                    }
-                }
-            }
-
-            if (i > 0 && i < SIZE - 1) // середина таблицы
-            {
-                if (j > 0 && j < SIZE - 1)
-                {
-                    if (pg[i][j + 1] == 0 && pg[i][j - 1] == 0 && pg[i - 1][j + 1] == 0 && pg[i - 1][j - 1] == 0 && pg[i - 1][j] == 0)
-                    {
-                        pg[i][j] = '*';
-                        mine_mass[i] -= 1;
-                    }
-                }
-
-                if (j == 0)
-                {
-                    if (pg[i - 1][j + 1] == 0 && pg[i - 1][j] == 0)
-                    {
-                        pg[i][j] = '*';
-                        mine_mass[i] -= 1;
-                    }
-                }
-
-                if (j == SIZE - 1)
-                {
-                    if (pg[i][j - 1] == 0 && pg[i - 1][j - 1] == 0 && pg[i - 1][j] == 0)
-                    {
-                        pg[i][j] = '*';
-                        mine_mass[i] -= 1;
-                    }
+                    pole[i][j] = space;
                 }
             }
         }
+        if (pointY == 23)
+            pointSpeedY = -1;
+        if (pointY == 1)
+            pointSpeedY = 1;
+        if (pointX == 79)
+        {
+            if (fPScore != 20)
+            {
+                fPScore++;
+            }
+            else
+            {
+                printf("Win First player!");
+                break;
+            }
+            flag = 0;
+        }
+        if (pointX == 0)
+        {
+            if (sPScore != 20)
+            {
+                sPScore++;
+            }
+            else
+            {
+                printf("Win Second player!");
+                break;
+            }
+            flag = 0;
+        }
+
+        if ((sRStart <= pointY && pointY <= sREnd && pointX == secondRacketX - 1))
+            pointSpeedX = -1;
+        if (fRStart <= pointY && pointY <= fREnd && pointX == firstRacketX + 1)
+            pointSpeedX = 1;
+
+        for (int i = 0; i < max_pos_y; i++)
+        {
+            for (int j = 0; j < max_pos_x; j++)
+            {
+                printf("%c", pole[i][j]);
+            }
+            printf("%c", '\n');
+        }
+        printf("Points First's player: %d\n", fPScore);
+        printf("Points Second's player: %d\n", sPScore);
+
+        char key = getchar();
+
+        if (f_board_key(key, fRStart, fREnd, min_pos_y, max_pos_y) == 1)
+        {
+            fRStart++;
+            fREnd++;
+        }
+        else if (f_board_key(key, fRStart, fREnd, min_pos_y, max_pos_y) == 1)
+        {
+            fRStart--;
+            fREnd--;
+        }
+
+        if (second_board_key(key, sRStart, sREnd, min_pos_y, max_pos_y) == 1)
+        {
+            sRStart++;
+            sREnd++;
+        }
+        else if (second_board_key(key, sRStart, sREnd, min_pos_y, max_pos_y) == -1)
+        {
+            sRStart--;
+            sREnd--;
+        }
+
+        if (key == '\n')
+        {
+            pointX += pointSpeedX;
+            pointY += pointSpeedY;
+        }
     }
+}
 
-    // printf("table result = \n");
-    // for (int i = 0; i < SIZE; i += 1)
-    // {
-    //     for (int j = 0; j < SIZE; j += 1)
-    //     {
-    //         printf("%c", pg[i][j]);
-    //     }
-    //     printf("\n");
-    // }
+int f_board_key(char key, int fRStart, int fREnd, int min_pos_y, int max_pos_y)
+{
+    if (key == 'a' && fRStart != min_pos_y)
+        return -1;
+    if (key == 'z' && fREnd != max_pos_y - 2)
+        return 1;
+    return 0;
+}
 
-    __assert_verify_pg(pg); // для тестирования (не убирать и должна идти непосредственно перед return 0)
+int second_board_key(char key, int sRStart, int sREnd, int min_pos_y, int max_pos_y)
+{
+    if (key == 'k' && sRStart != min_pos_y)
+        return -1;
+    if (key == 'm' && sREnd != max_pos_y - 2)
+        return 1;
     return 0;
 }
